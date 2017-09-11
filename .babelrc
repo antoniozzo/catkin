@@ -1,0 +1,20 @@
+{
+  "presets": [
+    ["es2015", {"modules": false}],
+    "react",
+    "stage-0"
+  ],
+  "plugins" : [
+    "universal-import"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "presets": ["react-optimize"]
+    }
+  }
+}

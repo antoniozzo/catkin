@@ -1,0 +1,32 @@
+.root {
+	display: inline-block;
+	max-width: 100%;
+	padding: 0 30px;
+	position: relative;
+
+	border: 0;
+	outline: 0;
+
+	background-color: #000;
+
+	color: #fff;
+	font-family: var(--fontPrimary);
+	font-size: 1.1rem;
+	font-weight: 400;
+	letter-spacing: .05em;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	-webkit-font-smoothing: auto;
+
+	cursor: pointer;
+
+	&.medium {
+		min-width: 240px;
+		height: 36px;
+
+		font-size: 1.1rem;
+	}
+}

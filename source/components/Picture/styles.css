@@ -1,0 +1,17 @@
+.root {
+	display: inline-block;
+
+    text-align: center;
+
+	img {
+		max-width: 100%;
+		max-height: inherit;
+
+		opacity: 0;
+
+		.loaded& {
+			transition: opacity 1s ease;
+			opacity: 1;
+		}
+	}
+}

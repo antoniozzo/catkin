@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "semi": [2, "never"],
+    "indent": [2, 4, {"SwitchCase": 1}],
+    "react/jsx-indent": [2, 4],
+    "react/jsx-indent-props": [2, 4],
+    "react/jsx-filename-extension": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./config/webpack.base.js"
+      }
+    }
+  }
+}
