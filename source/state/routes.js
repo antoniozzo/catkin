@@ -1,8 +1,6 @@
 import { Map } from 'immutable'
 import { connectRoutes, NOT_FOUND } from 'redux-first-router'
 
-import debug from 'utilities/debug'
-
 import { addReducer } from './reducers'
 import { runSaga } from './sagas'
 
