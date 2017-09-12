@@ -4,9 +4,10 @@ const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin'
 const config = require('./')
 
 module.exports = {
+    name: 'static',
+    entry: './server.js',
     target: 'node',
     context: config.buildDir,
-    entry: './render.js',
     output: {
         path: config.buildDir,
         filename: 'static.js',
@@ -17,9 +18,8 @@ module.exports = {
             paths: ['/'],
             crawl: true,
             locals: {
-                assets: require(path.join(config.buildDir, 'assets.json')),
-                chunks: require(path.join(config.buildDir, 'chunks.json')),
-                icons: require(path.join(config.buildDir, 'icons.json')),
+                clientStats: require(path.join(config.buildDir, 'stats.json')),
+                icons: require(path.join(config.buildDir, 'icons.json')).html,
             },
         }),
     ],

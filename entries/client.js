@@ -1,5 +1,3 @@
-import 'assets/styles.css'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -9,6 +7,8 @@ import transit from 'transit-immutable-js'
 
 import configureStore from 'state/store'
 import App from 'views/App'
+
+import 'assets/styles.css'
 
 const initialState = window.__INITIAL_STATE__
     ? transit.fromJSON(window.__INITIAL_STATE__)

@@ -6,14 +6,15 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "NODE_ENV=production node -r dotenv/config ./index.js",
+    "serve:static": "serve ./build",
     "develop": "NODE_ENV=development node -r dotenv/config ./index.js",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "build": "npm run build:client && npm run build:server",
     "build:client": "mkdir -p build && NODE_ENV=production webpack -p --config ./config/webpack.client.js --json > ./build/stats.json",
-    "build:server": "NODE_ENV=production webpack -p --config ./config/webpack.server.js",
+    "build:server": "npm run build:client && NODE_ENV=production webpack -p --config ./config/webpack.server.js",
+    "build:static": "npm run build:client && npm run build:server && NODE_ENV=production webpack -p --config ./config/webpack.static.js",
     "build:storybook": "build-storybook",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:cover": "jest --coverage"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
@@ -41,6 +42,7 @@
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.6",
     "postcss-nested": "^2.1.2",
+    "static-site-generator-webpack-plugin": "^3.4.1",
     "webpack": "3.5.5",
     "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-middleware": "^1.12.0",

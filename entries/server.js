@@ -13,7 +13,7 @@ import configureStore from 'state/store'
 import Html from 'components/Html'
 import App from 'views/App'
 
-const loadStore = async function (history) {
+const loadStore = async (history) => {
     const { store, thunk } = await configureStore(history)
 
     await thunk(store)
@@ -21,9 +21,9 @@ const loadStore = async function (history) {
     return store
 }
 
-export default ({ clientStats, ...rest }) => async (req, res) => {
+const render = async (path, { clientStats, ...rest }) => {
     try {
-        const history = createHistory({ initialEntries: [req.path] })
+        const history = createHistory({ initialEntries: [path] })
         const store = await loadStore(history)
 
         const content = renderToString((
@@ -35,25 +35,42 @@ export default ({ clientStats, ...rest }) => async (req, res) => {
         const chunkNames = flushChunkNames()
         const chunks = flushChunks(clientStats, { chunkNames })
 
-        debug('Path served: %o', req.path)
+        debug('Path served: %o', path)
         debug('Scripts served: %o', chunks.scripts)
         debug('Styles served: %o', chunks.stylesheets)
 
         const state = store.getState()
 
-        res.status(state.get('location').type === NOT_FOUND ? 404 : 200)
-        res.send(`<!doctype html>${renderToStaticMarkup((
-            <Html
-                state={transit.toJSON(state)}
-                content={content}
-                assets={clientStats.assetsByChunkName}
-                chunks={chunks}
-                {...rest}
-            />
-        ))}`)
+        return {
+            status: state.get('location').type === NOT_FOUND ? 404 : 200,
+            document: `<!doctype html>${renderToStaticMarkup((
+                <Html
+                    state={transit.toJSON(state)}
+                    content={content}
+                    assets={clientStats.assetsByChunkName}
+                    chunks={chunks}
+                    {...rest}
+                />
+            ))}`,
+        }
     } catch (err) {
-        res.status(500).send(renderToStaticMarkup((
-            <RedBoxError error={err} />
-        )))
+        return {
+            status: 500,
+            document: renderToStaticMarkup((
+                <RedBoxError error={err} />
+            )),
+        }
+    }
+}
+
+export default ({ path, ...locals }) => {
+    if (path) {
+        return render(path, locals).then(out => out.document)
+    }
+
+    return async (req, res) => {
+        const server = await render(req.path, locals)
+
+        res.status(server.status).send(server.document)
     }
 }

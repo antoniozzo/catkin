@@ -36,9 +36,10 @@ module.exports = merge.smart(baseConfig, {
             new webpack.NoEmitOnErrorsPlugin(),
         ]) : ([
             new CleanWebpackPlugin([
-                `${config.buildDir}/styles.*.css`,
+                `${config.buildDir}/main.*.css`,
                 `${config.buildDir}/main.*.js`,
                 `${config.buildDir}/vendor.*.js`,
+                `${config.buildDir}/views`,
             ], {
                 root: config.rootDir,
                 verbose: false,

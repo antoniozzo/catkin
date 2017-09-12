@@ -1,6 +1,6 @@
 # CatKin
 
-React/Redux + Webpack 3 template with server-side-rendering and code-splitting thanks to [Universal Component](https://github.com/faceyspacey/react-universal-component) and [Redux First Router](https://github.com/faceyspacey/redux-first-router). Cred goes to [James Gillmore](https://github.com/faceyspacey) for providing these awesome libraries.
+React/Redux + Webpack 3 template with server-side-rendering and code-splitting thanks to [Universal Component](https://github.com/faceyspacey/react-universal-component) and [Redux First Router](https://github.com/faceyspacey/redux-first-router). Cred goes to [James Gillmore](https://github.com/faceyspacey) for providing these awesome libraries. This template also has support for static site generation á la [Next.js](https://github.com/zeit/next.js/).
 
 ## Table of contents
 
@@ -44,25 +44,39 @@ $ yarn storybook
 
 ## Building
 
+Building universal application
 ```
-$ yarn build
+$ yarn build:server
+```
+
+Building static served html files
+```
+$ yarn build:static
 ```
 
 ## Serving
 
+With server-side rendering
 ```
-$ yarn serve /* or */ yarn start
+$ yarn serve
+```
+
+With static html files
+```
+$ yarn serve:static
 ```
 
 ## All npm scripts
 
 * `start` - alias for `serve`
 * `serve` - serve the built application in production mode
+* `serve:static` - serve the html files and assets as a static site
 * `develop` - start the application in development mode
 * `storybook` - start storybook for development
 * `build` - build the client & server assets
 * `build:client` - build the client assets only
 * `build:server` - build the server assets only
+* `build:static` - build the static html files and assets
 * `build:storybook` - build the storybook
 * `test` - run tests with jest
 * `test:cover` - run tests with jest and give a coverage report
