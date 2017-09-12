@@ -1,6 +1,12 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": [
+    "jest"
+  ],
   "rules": {
     "semi": [2, "never"],
     "indent": [2, 4, {"SwitchCase": 1}],

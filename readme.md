@@ -2,6 +2,8 @@
 
 React/Redux + Webpack 3 template with server-side-rendering and code-splitting thanks to [Universal Component](https://github.com/faceyspacey/react-universal-component) and [Redux First Router](https://github.com/faceyspacey/redux-first-router). Cred goes to [James Gillmore](https://github.com/faceyspacey) for providing these awesome libraries. This template also has support for static site generation á la [Next.js](https://github.com/zeit/next.js/).
 
+***
+
 ## Table of contents
 
 * [What does it contain?](#what-does-it-contain)
