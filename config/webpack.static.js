@@ -1,15 +1,15 @@
 const path = require('path')
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
 
-const config = require('./')
+const paths = require('./paths')
 
 module.exports = {
     name: 'static',
     entry: './server.js',
     target: 'node',
-    context: config.buildDir,
+    context: paths.buildDir,
     output: {
-        path: config.buildDir,
+        path: paths.buildDir,
         filename: 'static.js',
         libraryTarget: 'umd',
     },
@@ -18,8 +18,8 @@ module.exports = {
             paths: ['/'],
             crawl: true,
             locals: {
-                clientStats: require(path.join(config.buildDir, 'stats.json')),
-                icons: require(path.join(config.buildDir, 'icons.json')).html,
+                clientStats: require(path.join(paths.buildDir, 'stats.json')),
+                icons: require(path.join(paths.buildDir, 'icons.json')).html,
             },
         }),
     ],

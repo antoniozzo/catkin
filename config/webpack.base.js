@@ -2,14 +2,14 @@ const path = require('path')
 const DotenvPlugin = require('dotenv-webpack')
 
 const env = require('./env')
+const paths = require('./paths')
 const loaders = require('./loaders')
-const config = require('./')
 
 module.exports = {
     context: path.resolve(__dirname, '..', 'entries'),
     devtool: env.env === 'development' && 'inline-source-map',
     output: {
-        path: config.buildDir,
+        path: paths.buildDir,
         pathinfo: env.env === 'development',
         filename: '[name].js',
         publicPath: '/',
@@ -29,7 +29,7 @@ module.exports = {
         ],
     },
     resolve: {
-        modules: [config.sourceDir, 'node_modules'],
+        modules: [paths.sourceDir, 'node_modules'],
         alias: {
             variables: path.resolve(__dirname, 'variables'),
         },

@@ -1,34 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import styles from './styles.css'
 
-class Button extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-        size: PropTypes.oneOf(['small', 'medium', 'large']),
-    }
+const Button = ({ children, size, ...rest }) => (
+    <button
+        className={classnames(
+            styles.root,
+            styles[size],
+        )}
+        {...rest}
+    >
+        {children}
+    </button>
+)
 
-    static defaultProps = {
-        size: 'medium',
-    }
+Button.propTypes = {
+    children: PropTypes.node.isRequired,
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+}
 
-    render() {
-        const { children, size, ...rest } = this.props
-
-        return (
-            <button
-                className={classnames(
-                    styles.root,
-                    styles[size],
-                )}
-                {...rest}
-            >
-                {children}
-            </button>
-        )
-    }
+Button.defaultProps = {
+    size: 'medium',
 }
 
 export default Button

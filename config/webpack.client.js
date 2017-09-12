@@ -5,8 +5,8 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 const baseConfig = require('./webpack.base')
 const loaders = require('./loaders')
+const paths = require('./paths')
 const env = require('./env')
-const config = require('./')
 
 module.exports = merge.smart(baseConfig, {
     target: 'web',
@@ -36,12 +36,12 @@ module.exports = merge.smart(baseConfig, {
             new webpack.NoEmitOnErrorsPlugin(),
         ]) : ([
             new CleanWebpackPlugin([
-                `${config.buildDir}/main.*.css`,
-                `${config.buildDir}/main.*.js`,
-                `${config.buildDir}/vendor.*.js`,
-                `${config.buildDir}/views`,
+                `${paths.buildDir}/main.*.css`,
+                `${paths.buildDir}/main.*.js`,
+                `${paths.buildDir}/vendor.*.js`,
+                `${paths.buildDir}/views`,
             ], {
-                root: config.rootDir,
+                root: paths.rootDir,
                 verbose: false,
             }),
         ])),
