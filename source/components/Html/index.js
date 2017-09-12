@@ -18,7 +18,7 @@ const Html = ({ content, state, icons, chunks }) => {
                         ${head.title.toString()}
                         ${head.meta.toString()}
                         ${head.link.toString()}
-                        ${icons}
+                        ${icons.join('\n')}
                         ${chunks.styles}
                         ${''/* !dev && process.env.GTM_ID && `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -64,7 +64,7 @@ const Html = ({ content, state, icons, chunks }) => {
 Html.propTypes = {
     content: PropTypes.string.isRequired,
     state: PropTypes.string.isRequired,
-    icons: PropTypes.string,
+    icons: PropTypes.array,
     chunks: PropTypes.shape({
         Js: PropTypes.func.isRequired,
         styles: PropTypes.object.isRequired,
@@ -73,7 +73,7 @@ Html.propTypes = {
 }
 
 Html.defaultProps = {
-    icons: '',
+    icons: [],
 }
 
 export default Html
