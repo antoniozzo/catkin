@@ -106,6 +106,16 @@ $ yarn serve:static
 ```
 *This will work in production, but it's recommended to put the `build` folder on a CDN (like Amazon)*
 
+## Analyzing with Lighhouse
+
+Measure the performance of your application with [Google Lighthouse](https://github.com/GoogleChrome/lighthouse). This take a few seconds and will open up a new page in the browser with a complete report of your metrics like Speed, Accessibility, Best Practices etc...
+
+**Run the analyzer:**
+
+```
+$ yarn analyze http://localhost:3000
+```
+
 ## All npm scripts
 
 * `start` - alias for `serve`
@@ -120,6 +130,7 @@ $ yarn serve:static
 * `build:storybook` - build the storybook
 * `test` - run tests with jest
 * `test:cover` - run tests with jest and give a coverage report
+* `analyze` - measure performance with Google lighthouse
 
 ## Project structure
 
