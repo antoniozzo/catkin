@@ -1,9 +1,9 @@
 const path = require('path')
 
-const config = require('../config')
+const paths = require('../config/paths')
 
-const clientStats = require(path.join(config.buildDir, 'stats.json'))
-const icons = require(path.join(config.buildDir, 'icons.json')).html
-const server = require(path.join(config.buildDir, 'server')).default
+const clientStats = require(path.join(paths.buildDir, 'stats.json'))
+const icons = require(path.join(paths.buildDir, 'icons.json')).html
+const server = require(path.join(paths.buildDir, 'server')).default
 
 module.exports = app => app.use(server({ clientStats, icons }))
