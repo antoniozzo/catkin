@@ -1,7 +1,4 @@
-const path = require('path')
-
 const env = require('./env')
-const imagesConfig = require('./images')
 const postcssConfig = require('./postcss')
 
 module.exports = {
@@ -32,22 +29,6 @@ module.exports = {
         test: /\.svg$/,
         exclude: /fonts/,
         loader: 'svg-inline',
-    },
-    images: {
-        test: /\.(jpe?g|png)$/,
-        use: [
-            {
-                loader: 'cached',
-                query: {
-                    cacheDirectory: path.resolve(__dirname, 'cache'),
-                    cacheIdentifier: JSON.stringify(imagesConfig),
-                },
-            },
-            {
-                loader: 'responsive',
-                query: imagesConfig,
-            },
-        ],
     },
     files: {
         test: /\.(ico|eot|otf|webp|ttf|woff|woff2|svg|mp4|gif|png)(\?.*)?$/,

@@ -9,6 +9,7 @@ React/Redux + Webpack 3 template with server-side-rendering and code-splitting t
 * [What does it contain?](#what-does-it-contain)
 * [Installing](#installing)
 * [Developing](#developing)
+* [Developing components in Storybook](#developing-components-in-storybook)
 * [Building](#building)
 * [Serving](#serving)
 * [All npm scripts](#all-npm-scripts)
@@ -29,45 +30,81 @@ React/Redux + Webpack 3 template with server-side-rendering and code-splitting t
 
 ## Installing
 
+When installing the project dependencies it's recommended to first [install Yarn](https://yarnpkg.com/en/docs/install).
+
+**Run the installer:**
+
 ```
 $ yarn install
+$ cp .env.example .env
 ```
 
 ## Developing
 
-Application
+The development environment utilizes [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware) and [Webpack Hot Server Middleware](https://github.com/60frames/webpack-hot-server-middleware) to simulate a build and handle updates. No `build/` folder will be generated during development as everything is served from memory.
+
+**Start the development environment:**
+
 ```
 $ yarn develop
 ```
 
-Storybook
+## Developing components in Storybook
+
+[Storybook](https://github.com/storybooks/storybook) is a great environment for building React components in isolation. This gives you room to build and test your components before working on the application structure and layout. Your storybook will also work great as a component library with awesome documentation. To add a new story in your storybook just add `stories.js` in your component folder. Check `source/components/Button/stories.js` for reference.
+
+**Start writing components:**
+
 ```
 $ yarn storybook
 ```
 
+## Testing
+
+This project contains tests with [Jest](https://facebook.github.io/jest/) and [Ensyme](http://airbnb.io/enzyme/). Check files `source/views/HomePage/__tests__/*.test.js` as reference for testing reducers, actions, sagas, selectors and components.
+
+**Run the test suite:**
+
+```
+$ yarn test
+```
+
+**Run the test suite and get a coverage report:**
+
+```
+$ yarn test:cover
+```
+
 ## Building
 
-Building universal application
+Before building your application you needto decide if you want to run a Node.js server or serving static html files and assets (*on Amazon for example*). The application will work equally well in both cases, but when serving a static site you need to have a strategy for re-building the assets when your data sources change. That can be solved by exposing a webhook url that runs the static site builder when called.
+
+**Build for server-side rendering:**
+
 ```
 $ yarn build:server
 ```
 
-Building static served html files
+**Build static html files and assets:**
+
 ```
 $ yarn build:static
 ```
 
 ## Serving
 
-With server-side rendering
+**Run application with server-side rendering:**
+
 ```
 $ yarn serve
 ```
 
-With static html files
+**Simulate static served site:**
+
 ```
 $ yarn serve:static
 ```
+*This will work in production, but it's recommended to put the `build` folder on a CDN (like Amazon)*
 
 ## All npm scripts
 

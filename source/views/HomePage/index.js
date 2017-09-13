@@ -11,7 +11,7 @@ import Picture from 'components/Picture'
 import selector from './selectors'
 import styles from './styles.css'
 
-const HomePage = ({ title, content, meta }) => (
+export const HomePage = ({ title, content, meta }) => (
     <Page {...meta}>
         <h1 className={styles.title}>{title}</h1>
         <p>{content}</p>
