@@ -13,9 +13,8 @@ import styles from './styles.css'
 
 export const HomePage = ({ title, content, meta }) => (
     <Page {...meta}>
-        <h1 className={styles.title}>{title}</h1>
-        <p>{content}</p>
         <Picture
+            className={styles.background}
             image={{
                 src: 'https://unsplash.it/700/300',
                 alt: 'Home image',
@@ -31,6 +30,10 @@ export const HomePage = ({ title, content, meta }) => (
                 },
             ]}
         />
+        <div className={styles.text}>
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.content}>{content}</p>
+        </div>
     </Page>
 )
 

@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import classnames from 'classnames'
+
+import styles from './styles.css'
 
 const Page = ({
     url,
@@ -16,10 +19,14 @@ const Page = ({
     currency,
     amount,
     children,
+    className,
 
     ...rest
 }) => (
-    <div {...rest}>
+    <div
+        {...rest}
+        className={classnames(styles.root, className)}
+    >
         <Helmet title={title} >
             {(url || canonicalUrl) && <link rel="canonical" href={url || canonicalUrl} />}
 
@@ -55,6 +62,7 @@ const Page = ({
 )
 
 Page.propTypes = {
+    className: PropTypes.string,
     children: PropTypes.node.isRequired,
     url: PropTypes.string,
     canonicalUrl: PropTypes.string,
@@ -71,6 +79,7 @@ Page.propTypes = {
 }
 
 Page.defaultProps = {
+    className: '',
     url: '',
     canonicalUrl: '',
     title: '',

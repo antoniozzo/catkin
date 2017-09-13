@@ -6,8 +6,10 @@ import { NavLink } from 'redux-first-router-link'
 import { ROUTE_HOME, ROUTE_ABOUT } from 'state/routes'
 import Switch from 'views/Switch'
 
+import styles from './styles.css'
+
 const App = () => (
-    <div>
+    <div className={styles.root}>
         <Helmet
             defaultTitle="YourSite"
             titleTemplate="%s | YourSite"
@@ -16,10 +18,12 @@ const App = () => (
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         </Helmet>
 
-        <ul>
-            <li><NavLink exact to={{ type: ROUTE_HOME }}>Home</NavLink></li>
-            <li><NavLink exact to={{ type: ROUTE_ABOUT }}>About</NavLink></li>
-        </ul>
+        <nav className={styles.menu}>
+            <ul>
+                <li><NavLink exact to={{ type: ROUTE_HOME }}>Home</NavLink></li>
+                <li><NavLink exact to={{ type: ROUTE_ABOUT }}>About</NavLink></li>
+            </ul>
+        </nav>
 
         <Switch />
     </div>
