@@ -12,6 +12,7 @@ React/Redux + Webpack 3 template with server-side-rendering and code-splitting t
 * [Developing components in Storybook](#developing-components-in-storybook)
 * [Building](#building)
 * [Serving](#serving)
+* [Analyzing with Lighhouse](#analyzing-with-lighhouse)
 * [All npm scripts](#all-npm-scripts)
 * [Project structure](#project-structure)
 
