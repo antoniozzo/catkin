@@ -6,7 +6,7 @@ import { HomePage } from './'
 
 const stories = storiesOf('Pages/HomePage', module)
 
-stories.add('Default', () => (
+stories.addWithStaticMarkup('Default', () => (
     <HomePage
         title="Home"
         content="This is a beautiful home page"

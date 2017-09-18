@@ -4,7 +4,14 @@ import Helmet from 'react-helmet'
 
 // const dev = process.env.NODE_ENV === 'development'
 
-const Html = ({ content, state, icons, chunks }) => {
+const Html = ({
+    content,
+    state,
+    meta,
+    scripts,
+    stylesheets,
+    cssHashRaw,
+}) => {
     const head = Helmet.renderStatic()
     const htmlAttrs = head.htmlAttributes.toComponent()
     const bodyAttrs = head.bodyAttributes.toComponent()
@@ -18,8 +25,8 @@ const Html = ({ content, state, icons, chunks }) => {
                         ${head.title.toString()}
                         ${head.meta.toString()}
                         ${head.link.toString()}
-                        ${icons.join('')}
-                        ${chunks.styles}
+                        ${meta}
+                        ${stylesheets.map(href => `<link rel="stylesheet" href="${href}">`).join('')}
                         ${''/* !dev && process.env.GTM_ID && `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -50,12 +57,12 @@ const Html = ({ content, state, icons, chunks }) => {
                     dangerouslySetInnerHTML={{
                         __html: `
                             window.__INITIAL_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')};
-                            window.__CSS_CHUNKS__ = ${JSON.stringify(chunks.cssHashRaw)};
+                            window.__CSS_CHUNKS__ = ${JSON.stringify(cssHashRaw)};
                         `,
                     }}
                 />
 
-                <chunks.Js />
+                {scripts.map(src => <script type="text/javascript" defer src={src} />)}
             </body>
         </html>
     )
@@ -64,16 +71,19 @@ const Html = ({ content, state, icons, chunks }) => {
 Html.propTypes = {
     content: PropTypes.string.isRequired,
     state: PropTypes.string.isRequired,
-    icons: PropTypes.array,
-    chunks: PropTypes.shape({
-        Js: PropTypes.func.isRequired,
-        styles: PropTypes.object.isRequired,
-        cssHashRaw: PropTypes.object.isRequired,
-    }).isRequired,
+    meta: PropTypes.string,
+    // chunks: PropTypes.shape({
+    //     Js: PropTypes.func.isRequired,
+    //     styles: PropTypes.object.isRequired,
+    //     cssHashRaw: PropTypes.object.isRequired,
+    // }).isRequired,
+    scripts: PropTypes.arrayOf(PropTypes.string).isRequired,
+    stylesheets: PropTypes.arrayOf(PropTypes.string).isRequired,
+    cssHashRaw: PropTypes.func.isRequired,
 }
 
 Html.defaultProps = {
-    icons: [],
+    meta: '',
 }
 
 export default Html

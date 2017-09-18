@@ -48,7 +48,7 @@ const render = async (path, { clientStats, ...rest }) => {
                     state={transit.toJSON(state)}
                     content={content}
                     assets={clientStats.assetsByChunkName}
-                    chunks={chunks}
+                    {...chunks}
                     {...rest}
                 />
             ))}`,

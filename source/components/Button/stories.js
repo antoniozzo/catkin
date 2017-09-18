@@ -8,7 +8,7 @@ import Button from './'
 
 storiesOf('Button', module)
     .addDecorator(checkA11y)
-    .add('Default', () => (
+    .addWithStaticMarkup('Default', () => (
         <Button onClick={action('Button clicked')}>
             Just a button
         </Button>

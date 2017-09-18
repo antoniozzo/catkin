@@ -1,11 +1,19 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const OfflinePlugin = require('offline-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+const CompressionPlugin = require('compression-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 const baseConfig = require('./webpack.base')
+const manifest = require('./manifest')
 const loaders = require('./loaders')
+const offline = require('./offline')
 const paths = require('./paths')
+const icons = require('./icons')
 const env = require('./env')
 
 module.exports = merge.smart(baseConfig, {
@@ -43,6 +51,13 @@ module.exports = merge.smart(baseConfig, {
             ], {
                 root: paths.rootDir,
                 verbose: false,
+            }),
+            new FaviconsWebpackPlugin(icons),
+            new WebpackPwaManifest(manifest),
+            new OfflinePlugin(offline),
+            new CompressionPlugin({
+                test: /\.js$|\.css$|\.html$/,
+                threshold: 10240,
             }),
         ])),
     ],

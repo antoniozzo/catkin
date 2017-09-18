@@ -16,7 +16,7 @@ module.exports = {
                     importLoaders: 1,
                     modules: true,
                     discardComments: { removeAll: true },
-                    localIdentName: env.env === 'development' ? '[path][name]-[local]-[hash:base64:3]' : '[hash:base64:5]',
+                    localIdentName: env.env === 'development' ? '[path]-[local]' : '[hash:base64:5]',
                 },
             },
             {

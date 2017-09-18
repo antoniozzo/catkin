@@ -4,9 +4,8 @@ const path = require('path')
 const express = require('express')
 
 const env = require('./config/env')
-const paths = require('./config/paths')
 
-const app = express().use(express.static(paths.buildDir))
+const app = express()
 
 require(path.join(__dirname, 'server', env.env))(app)
 

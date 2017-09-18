@@ -1,8 +1,10 @@
 import 'assets/styles.css'
 
-import { addDecorator, configure } from '@storybook/react'
+import { addDecorator, setAddon, configure } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
+import staticMarkup from 'react-storybook-addon-static-markup'
 
+setAddon(staticMarkup)
 addDecorator(withKnobs)
 
 const req = require.context('../../source', true, /stories\.js$/)

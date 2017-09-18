@@ -28,7 +28,9 @@ const Page = ({
         className={classnames(styles.root, className)}
     >
         <Helmet title={title} >
-            {(url || canonicalUrl) && <link rel="canonical" href={url || canonicalUrl} />}
+            {(url || canonicalUrl || process.browser) && (
+                <link rel="canonical" href={url || canonicalUrl || window.location} />
+            )}
 
             {description && <meta name="description" content={description} />}
             {image && <meta name="image" content={image} />}

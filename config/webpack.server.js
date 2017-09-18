@@ -2,13 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const baseConfig = require('./webpack.base')
 const loaders = require('./loaders')
-const icons = require('./icons')
-const paths = require('./paths')
-const env = require('./env')
 
 module.exports = merge.smart(baseConfig, {
     target: 'node',
@@ -30,14 +26,6 @@ module.exports = merge.smart(baseConfig, {
         }, {}),
     plugins: [
         new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-        ...(env.env === 'development' ? [] : [
-            new FaviconsWebpackPlugin({
-                logo: path.join(paths.sourceDir, 'assets', 'favicon.png'),
-                emitStats: true,
-                statsFilename: 'icons.json',
-                icons,
-            }),
-        ]),
     ],
     module: {
         rules: [

@@ -3,11 +3,13 @@ import { Map } from 'immutable'
 // import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager'
 
 import debug from 'utilities/debug'
+import appReducer from 'views/App/reducer'
 
 import { save, load } from './persist'
 // import events from './events'
 
 let reducers = new Map({
+    app: appReducer,
     // metaReducer : createMetaReducer(events, GoogleTagManager())
 })
 
