@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
+    "imagesloaded": "^4.1.3",
     "next": "^4.2.1",
     "postcss-cssnext": "^3.0.2",
     "prop-types": "^15.6.0",
@@ -12,11 +14,15 @@
     "styled-jsx-plugin-postcss": "^0.1.1"
   },
   "scripts": {
-    "dev": "next",
+    "start": "next start",
+    "develop": "next",
+    "develop:storybook": "start-storybook -p 6006",
     "build": "next build",
-    "start": "next start"
+    "build:storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.18",
+    "@storybook/react": "^3.2.18",
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
